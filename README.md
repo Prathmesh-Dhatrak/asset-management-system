@@ -30,7 +30,7 @@ A React-based web application with user authentication and asset management func
 
 - **Frontend**: React with TypeScript
 - **Styling**: Tailwind CSS, DaisyUI
-- **State Management**: React Context API
+- **State Management**: Redux
 - **Backend**: Node.js with Express.js
 - **Database**: JSON file-based storage
 - **Authentication**: JWT
