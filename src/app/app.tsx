@@ -1,33 +1,19 @@
 import { UserIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { themeChange } from 'theme-change'
 
 function App() {
-  const [theme, setTheme] = useState("light");
-  
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
-  
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
-  }, []);
+    themeChange(false)
+    // 👆 false parameter is required for react project
+  }, [])
 
   return (
     <div className="min-h-screen flex flex-col bg-base-200">
       <div className="container mx-auto px-4 py-16">
         <div className="flex justify-end mb-4">
           <label className="grid cursor-pointer place-items-center">
-            <input
-              type="checkbox"
-              checked={theme === "dark"}
-              onChange={toggleTheme}
-              className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1"
-            />
+            <input type="checkbox" className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1" data-toggle-theme="dark,light" data-act-class="ACTIVECLASS" />
             <svg
               className="stroke-base-100 fill-base-100 col-start-1 row-start-1"
               xmlns="http://www.w3.org/2000/svg"
@@ -76,21 +62,21 @@ function App() {
               This application allows you to securely track and manage all your assets in one place.
               Sign in to get started or create a new account.
             </p>
-            
+
             <div className="card-actions justify-center mt-6 flex-col sm:flex-row gap-4">
-              <button className="btn btn-primary flex items-center gap-2">
-                <UserIcon className="h-5 w-5" />
-                <span>Sign Up</span>
+              <button className="btn btn-primary">
+                <UserIcon className="h-5 w-5 mr-2" />
+                Sign Up
               </button>
-              <button className="btn btn-outline flex items-center gap-2">
-                <ArrowRightIcon className="h-5 w-5" />
-                <span>Log In</span>
+              <button className="btn btn-outline">
+                <ArrowRightIcon className="h-5 w-5 mr-2" />
+                Log In
               </button>
             </div>
           </div>
         </section>
       </div>
-      
+
       <footer className="footer footer-center p-4 bg-base-300 text-base-content mt-auto">
         <div>
           <p>Asset Management System &copy; {new Date().getFullYear()}</p>
