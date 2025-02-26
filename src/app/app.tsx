@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [theme, setTheme] = useState("light");
   
+  // Toggle theme between light and dark
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -11,6 +12,7 @@ function App() {
     localStorage.setItem("theme", newTheme);
   };
   
+  // Initialize theme from localStorage on component mount
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
@@ -69,10 +71,10 @@ function App() {
 
         <section className="card bg-base-100 shadow-xl max-w-3xl mx-auto">
           <div className="card-body text-center">
-            <h2 className="card-title text-2xl justify-center">
+            <h2 className="card-title text-2xl justify-center text-base-content">
               Welcome to your Asset Dashboard
             </h2>
-            <p className="py-4">
+            <p className="py-4 text-base-content">
               This application allows you to securely track and manage all your assets in one place.
               Sign in to get started or create a new account.
             </p>
