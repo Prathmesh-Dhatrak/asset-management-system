@@ -7,16 +7,15 @@ const HomePage: React.FC = () => {
   const { isAuthenticated } = useAppSelector(state => state.auth);
 
   return (
-    <div className="min-h-screen bg-base-200">
+    <div className="flex flex-col min-h-screen bg-base-200">
       <Navbar />
-      
-      <div className="hero min-h-[80vh] bg-base-200">
+
+      <div className="flex-grow hero bg-base-200">
         <div className="hero-content text-center">
-          <div className="max-w-md">
-            <h1 className="text-5xl font-bold">Asset Management System</h1>
+          <div className="max-w-lg">
+            <h1 className="text-4xl font-bold">Asset Management System</h1>
             <p className="py-6">
-              A secure platform to manage your assets with easy tracking and organization.
-              Keep all your investments and assets in one place.
+              React-based web application that includes user authentication and an asset management system using Tailwind CSS and DaisyUI.
             </p>
             {isAuthenticated ? (
               <Link to="/dashboard" className="btn btn-primary">Go to Dashboard</Link>
@@ -29,10 +28,10 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+
+      <footer className="footer footer-center p-4 bg-base-300 text-base-content mt-auto">
         <div>
-          <p>Asset Management System &copy; {new Date().getFullYear()}</p>
+          <p>Asset Manager &copy; {new Date().getFullYear()}</p>
         </div>
       </footer>
     </div>

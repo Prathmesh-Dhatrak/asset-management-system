@@ -28,7 +28,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ type, onSubmit, isLoading, error })
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
-    // Clear validation error for this field
     setValidationErrors(prev => ({ ...prev, [name]: '' }));
   };
 

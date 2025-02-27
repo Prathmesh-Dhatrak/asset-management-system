@@ -1,7 +1,7 @@
 # Asset Management System
 
 <p align='center'>
-  <img src='public/favicon.svg' alt='Asset Management System' width='120'/>
+  <img src='public/favicon.svg' alt='Asset Manager' width='120'/>
 </p>
 
 <p align='center'>
