@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAppSelector } from 'hooks/reduxHooks';
 import Navbar from 'components/organisms/Navbar';
-import AssetManager from 'components/organisms/AssetManager';
 
 const DashboardPage: React.FC = () => {
   const { user } = useAppSelector(state => state.auth);
@@ -16,11 +15,17 @@ const DashboardPage: React.FC = () => {
             Welcome to your Dashboard, {user?.username}!
           </h1>
           
-          <p className="text-base-content mb-8">
-            Manage your assets portfolio in one place. Add, edit, and monitor your investments.
+          <p className="text-base-content">
+            This is your asset management dashboard.
           </p>
           
-          <AssetManager />
+          <div className="divider">Assets will appear below</div>
+          
+          <div className="bg-base-200 p-4 rounded-lg text-center">
+            <p className="text-base-content opacity-70">
+              Asset management features will be implemented in the next phase.
+            </p>
+          </div>
         </div>
       </div>
     </div>
