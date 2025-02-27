@@ -13,6 +13,8 @@ export default defineConfig(() => {
         app: resolve(__dirname, "src", "app"),
         components: resolve(__dirname, "src", "components"),
         hooks: resolve(__dirname, "src", "hooks"),
+        store: resolve(__dirname, "src", "store"),
+        types: resolve(__dirname, "src", "types"),
       },
     },
   };

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Asset, CreateAssetDTO, UpdateAssetDTO, AssetQueryParams } from '../../types/asset.types';
-import { RootState } from '../rootReducer';
+import { Asset, CreateAssetDTO, UpdateAssetDTO, AssetQueryParams } from 'types/asset.types';
+import { RootState } from 'store/rootReducer';
+import { ASSET_ENDPOINTS } from 'app/config';
 
 export const fetchAssets = createAsyncThunk(
   'assets/fetchAssets',
@@ -14,7 +15,7 @@ export const fetchAssets = createAsyncThunk(
         .map(([key, value]) => `${key}=${encodeURIComponent(String(value))}`)
         .join('&');
       
-      const response = await fetch(`/api/assets?${queryString}`, {
+      const response = await fetch(`${ASSET_ENDPOINTS.BASE}?${queryString}`, {
         headers: { 
           'Authorization': `Bearer ${auth.token}` 
         },
@@ -39,7 +40,7 @@ export const createAsset = createAsyncThunk(
     try {
       const { auth } = getState() as RootState;
       
-      const response = await fetch('/api/assets', {
+      const response = await fetch(ASSET_ENDPOINTS.BASE, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -67,7 +68,7 @@ export const updateAsset = createAsyncThunk(
     try {
       const { auth } = getState() as RootState;
       
-      const response = await fetch(`/api/assets/${id}`, {
+      const response = await fetch(`${ASSET_ENDPOINTS.BASE}/${id}`, {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',
@@ -95,7 +96,7 @@ export const deleteAsset = createAsyncThunk(
     try {
       const { auth } = getState() as RootState;
       
-      const response = await fetch(`/api/assets/${id}`, {
+      const response = await fetch(`${ASSET_ENDPOINTS.BASE}/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${auth.token}` },
       });
