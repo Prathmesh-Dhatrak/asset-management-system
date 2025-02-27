@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AuthResponse, LoginDTO, CreateUserDTO } from '../../types/user.types';
+import { AuthResponse, AuthRequest } from 'types/user.types';
+import { AUTH_ENDPOINTS } from 'app/config';
 
 export const login = createAsyncThunk(
   'auth/login',
-  async (credentials: LoginDTO, { rejectWithValue }) => {
+  async (credentials: AuthRequest, { rejectWithValue }) => {
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(AUTH_ENDPOINTS.LOGIN, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
@@ -14,7 +15,7 @@ export const login = createAsyncThunk(
       
       if (!response.ok) {
         const errorData = await response.json();
-        return rejectWithValue(errorData);
+        return rejectWithValue(errorData.message || 'Login failed');
       }
       
       const data: AuthResponse = await response.json();
@@ -27,9 +28,9 @@ export const login = createAsyncThunk(
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (userData: CreateUserDTO, { rejectWithValue }) => {
+  async (userData: AuthRequest, { rejectWithValue }) => {
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(AUTH_ENDPOINTS.REGISTER, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -37,7 +38,7 @@ export const register = createAsyncThunk(
       
       if (!response.ok) {
         const errorData = await response.json();
-        return rejectWithValue(errorData);
+        return rejectWithValue(errorData.message || 'Registration failed');
       }
       
       const data: AuthResponse = await response.json();
