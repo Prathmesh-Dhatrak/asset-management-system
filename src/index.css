@@ -9,8 +9,21 @@
   }
   
   body {
-    @apply bg-gray-50 text-gray-800;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  :root {
+    color-scheme: light dark;
+  }
+
+  [data-theme="dark"] * {
+    --color-text: 220 220 220;
+    color-scheme: dark;
+  }
+
+  [data-theme="light"] * {
+    --color-text: 51 51 51;
+    color-scheme: light;
   }
 }
 
@@ -36,7 +49,7 @@
   }
   
   .form-label {
-    @apply block text-sm font-medium text-gray-700 mb-1;
+    @apply block text-sm font-medium mb-1;
   }
 }
 
@@ -44,4 +57,35 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  .text-adaptive {
+    @apply text-gray-800 dark:text-gray-200;
+  }
+}
+
+[data-theme="dark"] .text-base-content {
+  color: rgb(220 220 220) !important; 
+}
+
+[data-theme="dark"] {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity)) !important;
+}
+
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6, 
+[data-theme="dark"] p, 
+[data-theme="dark"] span, 
+[data-theme="dark"] li, 
+[data-theme="dark"] a:not(.btn-primary):not(.btn) {
+  color: rgb(229 231 235);
+}
+
+[data-theme="dark"] .label-text,
+[data-theme="dark"] .label-text-alt {
+  color: rgb(229 231 235);
 }

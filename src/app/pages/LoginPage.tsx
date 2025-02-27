@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from 'hooks/reduxHooks';
 import { login, clearError } from 'store/slices/auth';
 import AuthForm from 'components/molecules/AuthForm';
 import { AuthRequest } from 'types/user.types';
+import AuthLayout from 'app/templates/AuthLayout';
+import Alert from 'components/atoms/Alert';
 
 const LoginPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,28 +27,29 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-base-200">
-      <div className="max-w-md w-full space-y-8 p-8 bg-base-100 shadow-xl rounded-xl">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-base-content">
-            Log in to your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-base-content opacity-70">
-            Or{' '}
-            <Link to="/register" className="font-medium text-primary hover:text-primary-focus">
-              create a new account
-            </Link>
-          </p>
+    <AuthLayout 
+      title="Log in to your account"
+      subtitle={
+        <>
+          Or{' '}
+          <Link to="/register" className="font-medium text-primary hover:text-primary-focus">
+            create a new account
+          </Link>
+        </>
+      }
+    >
+      {error && (
+        <div className="mb-4">
+          <Alert type="error" message={error} />
         </div>
-
-        <AuthForm
-          type="login"
-          onSubmit={handleLogin}
-          isLoading={loading}
-          error={error}
-        />
-      </div>
-    </div>
+      )}
+      <AuthForm
+        type="login"
+        onSubmit={handleLogin}
+        isLoading={loading}
+        error={null}
+      />
+    </AuthLayout>
   );
 };
 
