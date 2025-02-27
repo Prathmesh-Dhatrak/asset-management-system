@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from 'hooks/reduxHooks';
-import Navbar from 'components/organisms/Navbar';
+import AppLayout from 'app/templates/AppLayout';
 
 const HomePage: React.FC = () => {
   const { isAuthenticated } = useAppSelector(state => state.auth);
 
   return (
-    <div className="flex flex-col min-h-screen bg-base-200">
-      <Navbar />
-
-      <div className="flex-grow hero bg-base-200">
+    <AppLayout>
+      <div className="hero bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-lg">
             <h1 className="text-4xl font-bold">Asset Management System</h1>
@@ -28,13 +26,7 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <footer className="footer footer-center p-4 bg-base-300 text-base-content mt-auto">
-        <div>
-          <p>Asset Manager &copy; {new Date().getFullYear()}</p>
-        </div>
-      </footer>
-    </div>
+    </AppLayout>
   );
 };
 
