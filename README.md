@@ -5,7 +5,7 @@
 </p>
 
 <p align='center'>
-A React-based web application with user authentication and asset management functionality
+A web application with user authentication and asset management functionality
 </p>
 
 ## Features
