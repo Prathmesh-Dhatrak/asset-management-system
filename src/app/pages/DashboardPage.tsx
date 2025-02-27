@@ -6,7 +6,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <AppLayout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-2 py-8">
         <div className="bg-base-100 shadow-xl rounded-xl p-6">
           <AssetManager />
         </div>

@@ -103,7 +103,7 @@ const AssetManager: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {error && <Alert type="error" message={error} />}
       {successMessage && <Alert type="success" message={successMessage} />}
 
@@ -112,7 +112,7 @@ const AssetManager: React.FC = () => {
           <h2 className="text-2xl font-bold">Your Assets</h2>
           <p className="text-base-content/70">Manage your assets portfolio</p>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
           <SearchInput onSearch={handleSearch} />
           <Button variant="primary" onClick={() => setShowAddModal(true)}>
             Add Asset
