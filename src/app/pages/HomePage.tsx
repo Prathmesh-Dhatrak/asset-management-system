@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
   const { isAuthenticated } = useAppSelector(state => state.auth);
 
   return (
-    <AppLayout>
+    <AppLayout activeFooter={true}>
       <div className="hero bg-base-200">
         <div className="hero-content text-center">
           <div className="max-w-lg">
