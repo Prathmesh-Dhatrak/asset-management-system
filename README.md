@@ -1,7 +1,7 @@
 # Asset Management System
 
 <p align='center'>
-  <img src='public/favicon.svg' alt='Asset Manager' width='120'/>
+  <img src='public/favicon.svg' alt='Asset Management System' width='120'/>
 </p>
 
 <p align='center'>
@@ -80,6 +80,14 @@ yarn build
 ```
 
 The built files will be available in the `dist` directory.
+
+## Backend Repository
+
+This project uses a dedicated backend service. The backend repository can be found at:
+
+[https://github.com/Prathmesh-Dhatrak/asset-manager-backend](https://github.com/Prathmesh-Dhatrak/asset-manager-backend)
+
+The backend provides API endpoints for authentication and asset management operations.
 
 ## Deployment
 
