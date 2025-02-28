@@ -8,6 +8,11 @@
 A web application with user authentication and asset management functionality
 </p>
 
+<p align='center'>
+  <strong>Frontend Repository:</strong> <a href="https://github.com/Prathmesh-Dhatrak/asset-management-system">https://github.com/Prathmesh-Dhatrak/asset-management-system</a><br>
+  <strong>Backend Repository:</strong> <a href="https://github.com/Prathmesh-Dhatrak/asset-manager-backend">https://github.com/Prathmesh-Dhatrak/asset-manager-backend</a>
+</p>
+
 ## Features
 
 - ⚡️ [React 18](https://react.dev/)
@@ -81,13 +86,7 @@ yarn build
 
 The built files will be available in the `dist` directory.
 
-## Backend Repository
 
-This project uses a dedicated backend service. The backend repository can be found at:
-
-[https://github.com/Prathmesh-Dhatrak/asset-manager-backend](https://github.com/Prathmesh-Dhatrak/asset-manager-backend)
-
-The backend provides API endpoints for authentication and asset management operations.
 
 ## Deployment
 
