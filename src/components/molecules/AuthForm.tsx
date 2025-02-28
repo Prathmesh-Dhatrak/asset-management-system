@@ -82,6 +82,26 @@ const AuthForm: React.FC<AuthFormProps> = ({ type, onSubmit, isLoading, error })
     }
   };
 
+  const handleUseDemoUser = () => {
+    const demoUser = {
+      email: "prathmesh_user@gmail.com",
+      password: "pass1234"
+    };
+    
+    setFormData(prev => ({
+      ...prev,
+      email: demoUser.email,
+      password: demoUser.password
+    }));
+    
+    setValidationErrors({
+      username: '',
+      email: '',
+      password: '',
+    });
+    onSubmit(demoUser);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && <Alert type="error" message={error} />}
@@ -147,14 +167,27 @@ const AuthForm: React.FC<AuthFormProps> = ({ type, onSubmit, isLoading, error })
         )}
       </div>
       
-      <Button 
-        type="submit" 
-        variant="primary" 
-        className="w-full mt-4" 
-        isLoading={isLoading}
-      >
-        {type === 'login' ? 'Log In' : 'Sign Up'}
-      </Button>
+      <div className="flex flex-col space-y-3">
+        <Button 
+          type="submit" 
+          variant="primary" 
+          className="w-full" 
+          isLoading={isLoading}
+        >
+          {type === 'login' ? 'Log In' : 'Sign Up'}
+        </Button>
+        
+        {type === 'login' && (
+          <Button 
+            type="button" 
+            variant="outline" 
+            className="w-full" 
+            onClick={handleUseDemoUser}
+          >
+            Use Demo User
+          </Button>
+        )}
+      </div>
     </form>
   );
 };
