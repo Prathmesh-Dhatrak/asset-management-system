@@ -15,6 +15,7 @@ export default defineConfig(() => {
         hooks: resolve(__dirname, "src", "hooks"),
         store: resolve(__dirname, "src", "store"),
         types: resolve(__dirname, "src", "types"),
+        services: resolve(__dirname, "src", "services"),
       },
     },
   };

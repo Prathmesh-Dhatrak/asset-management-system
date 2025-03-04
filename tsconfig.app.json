@@ -28,7 +28,8 @@
       "components/*": ["components/*"],
       "hooks/*": ["hooks/*"],
       "store/*": ["store/*"],
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
+      "services/*": ["services/*"]
     }
   },
   "include": ["src"]

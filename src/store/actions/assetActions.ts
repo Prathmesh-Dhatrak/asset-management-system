@@ -1,114 +1,74 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Asset, CreateAssetDTO, UpdateAssetDTO, AssetQueryParams } from 'types/asset.types';
-import { RootState } from 'store/rootReducer';
 import { ASSET_ENDPOINTS } from 'app/config';
+import api from 'services/api';
+import { AxiosError } from 'axios';
+import { API_BASE_URL } from 'app/config';
+
+interface ErrorResponse {
+  message: string;
+}
+
+const ASSETS_ENDPOINT = ASSET_ENDPOINTS.BASE.replace(`${API_BASE_URL}/`, '');
 
 export const fetchAssets = createAsyncThunk(
   'assets/fetchAssets',
-  async (queryParams: AssetQueryParams, { getState, rejectWithValue }) => {
+  async (queryParams: AssetQueryParams, { rejectWithValue }) => {
     try {
-      const { auth } = getState() as RootState;
-      
-      const queryString = Object.entries(queryParams)
-        .filter(([_, value]) => value !== undefined)
-        .map(([key, value]) => `${key}=${encodeURIComponent(String(value))}`)
-        .join('&');
-      
-      const response = await fetch(`${ASSET_ENDPOINTS.BASE}?${queryString}`, {
-        headers: { 
-          'Authorization': `Bearer ${auth.token}` 
-        },
+      const response = await api.get<Asset[]>(ASSETS_ENDPOINT, { 
+        params: queryParams 
       });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData);
-      }
-      
-      const data: Asset[] = await response.json();
-      return data;
+      return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to fetch assets.');
+      const axiosError = error as AxiosError<ErrorResponse>;
+      return rejectWithValue(
+        axiosError.response?.data?.message || 'Failed to fetch assets.'
+      );
     }
   }
 );
 
 export const createAsset = createAsyncThunk(
   'assets/createAsset',
-  async (assetData: CreateAssetDTO, { getState, rejectWithValue }) => {
+  async (assetData: CreateAssetDTO, { rejectWithValue }) => {
     try {
-      const { auth } = getState() as RootState;
-      
-      const response = await fetch(ASSET_ENDPOINTS.BASE, {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${auth.token}` 
-        },
-        body: JSON.stringify(assetData),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData);
-      }
-      
-      const data: Asset = await response.json();
-      return data;
+      const response = await api.post<Asset>(ASSETS_ENDPOINT, assetData);
+      return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to create asset.');
+      const axiosError = error as AxiosError<ErrorResponse>;
+      return rejectWithValue(
+        axiosError.response?.data?.message || 'Failed to create asset.'
+      );
     }
   }
 );
 
 export const updateAsset = createAsyncThunk(
   'assets/updateAsset',
-  async ({ id, data }: { id: string, data: UpdateAssetDTO }, { getState, rejectWithValue }) => {
+  async ({ id, data }: { id: string, data: UpdateAssetDTO }, { rejectWithValue }) => {
     try {
-      const { auth } = getState() as RootState;
-      
-      const response = await fetch(`${ASSET_ENDPOINTS.BASE}/${id}`, {
-        method: 'PUT',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${auth.token}` 
-        },
-        body: JSON.stringify(data),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData);
-      }
-      
-      const responseData: Asset = await response.json();
-      return responseData;
+      const response = await api.put<Asset>(`${ASSETS_ENDPOINT}/${id}`, data);
+      return response.data;
     } catch (error) {
-      return rejectWithValue('Failed to update asset.');
+      const axiosError = error as AxiosError<ErrorResponse>;
+      return rejectWithValue(
+        axiosError.response?.data?.message || 'Failed to update asset.'
+      );
     }
   }
 );
 
 export const deleteAsset = createAsyncThunk(
   'assets/deleteAsset',
-  async (id: string, { getState, rejectWithValue }) => {
+  async (id: string, { rejectWithValue }) => {
     try {
-      const { auth } = getState() as RootState;
-      
-      const response = await fetch(`${ASSET_ENDPOINTS.BASE}/${id}`, {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${auth.token}` },
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        return rejectWithValue(errorData);
-      }
-      
+      await api.delete(`${ASSETS_ENDPOINT}/${id}`);
       return id;
     } catch (error) {
-      return rejectWithValue('Failed to delete asset.');
+      const axiosError = error as AxiosError<ErrorResponse>;
+      return rejectWithValue(
+        axiosError.response?.data?.message || 'Failed to delete asset.'
+      );
     }
   }
 );
